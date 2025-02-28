@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Life Line Ambulance</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="booking.css">
+
+    <!---font style-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Dancing+Script:wght@400..700&family=Inspiration&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@300&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="container-fluid bg-primary text-white py-2">
+        <div class="row">
+            <div class="col-6">
+                <span>24/7 SERVICE AVAILABLE</span>
+                <span class="ms-3">📞108</span>
+            </div>
+            <div class="col-6 text-end">
+                <a href="https://www.facebook.com/sugam.ambulance/?_rdr" class="text-white me-2" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" alt="Facebook"
+                        width="30">
+                </a>
+                <a href="https://www.instagram.com/faisul_sugam/" class="text-white" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png"
+                        alt="Instagram" width="30">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand text-danger" href="#">
+                <span class="font-weight-bold">Life Line Ambulance</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">login</a>
+                    </li>
+                </ul>
+                <!-- Button to open the modal -->
+                <button class="btn btn-danger ms-3" onclick="showModal()">Book Appointment</button>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="appointmentModalLabel">Book Appointment with Doctor</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="appointmentForm">
+                                    <div class="mb-3">
+                                        <label for="patientName" class="form-label">Patient Name</label>
+                                        <input type="text" class="form-control" id="patientName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="appointmentDate" class="form-label">Appointment Date</label>
+                                        <input type="date" class="form-control" id="appointmentDate" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="appointmentTime" class="form-label">Appointment Time</label>
+                                        <input type="time" class="form-control" id="appointmentTime" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emergencyType" class="form-label">Type of Emergency</label>
+                                        <select class="form-select" id="emergencyType" required>
+                                            <option value="Medical">Medical Emergency</option>
+                                            <option value="Accident">Accident</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Confirm Appointment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointment details display -->
+                <div id="appointmentDetails" class="appointment-details" style="display: none;">
+
+                    <h4>Appointment Details:</h4>
+
+                    <p id="displayPatientName"></p>
+                    <p id="displayAppointmentDate"></p>
+                    <p id="displayAppointmentTime"></p>
+                    <button type="button" class="btn btn-primary" onclick="closeAppointmentDetails()">OK</button>
+                </div>
+            </div>
+    </nav>
+
+
+    <section class="container py-5">
+
+        <div class="row">
+
+            <div class="col-lg-6">
+                <h2 class="display-4 text-danger">Emergency Care</h2>
+                <p class="text-black font-weight-semibold">Life saving devices on the move!</p>
+                <p>The at-the-ready ambulance services available 24/7 from Sugam Ambulance any day, every day is
+                    fitted
+                    with life-saving equipment such as defibrillators, oxygen canisters and suction apparatus and
+                    Advanced Cardiac Life Support (ACLS) and Basic Life Support (BLS) teams to cater to any level of
+                    emergency.</p>
+                <p>Skilled and competent resuscitation and stroke emergency professionals available at all times.
+                </p>
+                <p>The 24-hour clinical laboratories, and diagnostic facilities at Sugam Hospitals provide the X-ray
+                    and
+                    CT-Scan services much needed for the competent and successful treatment of trauma victims.</p>
+
+            </div>
+            <div class="col-lg-6">
+                <img src="em.png" alt="Emergency Care" class="img-fluid rounded shadow-lg">
+            </div>
+
+            <h4 style="text-align: justify;"><span style="color: #000000;"><strong>Emergency care</strong></span>
+            </h4>
+
+            <span style="font-weight: 400; color: #000000;">
+                <p>We bring the considerable skills of our specialists and the advantage of advanced technology
+                    nearer
+                    the people of North Chennai for speedier treatments and better outcomes.
+            </span></p>
+
+            <span style="font-weight: 400; color: #000000;">Preparedness, prioritization and quick action are the
+                mainstays of emergency care. Our 24×7 emergency services are handled by specialists with good
+                experience
+                in working under pressure and time constraints. An interdisciplinary approach and nurses trained in
+                emergency care are trained to work well with limited information. This is vital in trauma cases
+                where
+                medical history may not be available and immediate treatment is necessary.</span>
+
+            <span style="font-weight: 400; color: #000000;">Our emergency department is equipped with the latest
+                life
+                saving equipments and blood storage facility. Our Disaster Management Team is highly trained and is
+                capable of handling emergencies involving multiple casualties. The team successfully resuscitated
+                around
+                100 patients in a short span of time during the tsunami.</span>
+
+
+            <span style="font-weight: 400; color: #000000;">
+                Ambulances equipped with Defibrillator, Ventilator, and Oxygen and manned by well-experienced staff
+                begin pre-hospital care and first-aid to better the chances of recovery.
+            </span>
+
+            <div class="col-mt-12">
+                <span style="color: #000000;"><strong>We routinely handle</strong></span>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled" style="text-align: justify;">
+                            <li style="font-weight: 400;">
+                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                                <span style="font-weight: 400; color: #000000;">Road Traffic Accidents,</span>
+                            </li>
+                            <li style="font-weight: 400;">
+                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                                <span style="font-weight: 400; color: #000000;">Crush and Degloving injuries</span>
+                            </li>
+                            <li style="font-weight: 400;">
+                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                                <span style="font-weight: 400; color: #000000;">Cardiopulmonary emergencies</span>
+                            </li>
+                            <li style="font-weight: 400;">
+                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                                <span style="font-weight: 400; color: #000000;">Surgical emergencies</span>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <ul class="list-unstyled" style="text-align: justify;">
+                            <li style="font-weight: 400;">
+                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                                <span style="font-weight: 400; color: #000000;">Toxicology</span>
+                            </li>
+                            <li style="font-weight: 400;">
+                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                                <span style="font-weight: 400; color: #000000;">Obstetric emergencies</span>
+                            </li>
+                            <li style="font-weight: 400;">
+                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                                <span style="font-weight: 400; color: #000000;">Burns</span>
+                            </li>
+                            <li style="font-weight: 400;">
+                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                                <span style="font-weight: 400; color: #000000;">Orthopaedic emergencies</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+
+                <span style="color: #000000;"><strong>Services available with</strong></span>
+
+                <ul class="list-unstyled" style="text-align: justify;">
+                    <li style="font-weight: 400;">
+                        <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                        <span style="font-weight: 400; color: #000000;">Full time Emergency Physician</span>
+                    </li>
+                    <li style="font-weight: 400;">
+                        <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
+                        <span style="font-weight: 400; color: #000000;">Trained Staff nurses</span>
+                    </li>
+                    <li style="font-weight: 400;">
+                        <i class="bi bi-plus" style="color:red; font-weight: bold; font-size: 24px;"></i>
+                        <span style="font-weight: 400; color: #000000;">Rapid Response Team (RRT)</span>
+                    </li>
+
+                    <li style="font-weight: 400;">
+                        <i class="bi bi-plus" style="color: red;; font-weight: bold; font-size: 24px;"></i>
+                        <span style="font-weight: 400; color: #000000;">Full time – CT Scan, Digital X-Ray,
+                            Digital
+                            Lab facilities
+                        </span>
+                    </li>
+                    <li style="font-weight: 400;">
+                        <i class="bi bi-plus" style="color: red;; font-weight: bold; font-size: 24px;"></i>
+                        <span style="font-weight: 400; color: #000000;">Full time – Surgical & Medical
+                            interventions
+                        </span>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </section>
+    <footer id="footer-1" class="footer">
+        <div class="footer"
+            style="background-image: url('https://ideabricks.in/sugam-hospitals/wp-content/uploads/2023/12/Group-214.png'); background-size: cover; background-repeat: no-repeat; background-position: center; color: white; padding: 40px 0;">
+            <div class="container">
+                <div class="row">
+                    <!-- FOOTER INFO -->
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="footer-info">
+                            <h5> Dharai Sugam Ambulance</h5>
+                            <p>
+                                Providing comprehensive medical services, from routine to highly
+                                specialised medical treatments and surgeries.
+                            </p>
+
+                            <!-- Social Icons -->
+                            <div class="footer-socials-links mt-3">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a href="https://www.facebook.com/sugam.ambulance/?_rdr" target="_blank">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"
+                                                alt="Facebook" width="30">
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="https://www.instagram.com/faisul_sugam/" target="_blank">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png"
+                                                alt="Instagram" width="30">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FOOTER CONTACTS -->
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="footer-box">
+                            <h5>Our Locations</h5>
+                            <p>
+                                No. 64, Anna Nagar Main Road,<br>
+                                Dharapuram, <br>
+                                Dharapuram - 638657 (Near Vel Hospital)
+                            </p>
+                            <a href="https://www.google.com/maps/place/10%C2%B042'37.4%22N+77%C2%B030'25.0%22E/@10.7103963,77.5069397,17z"
+                                target="_blank"><i class="bi bi-geo-alt">Location</i></a>
+                            <p>
+                                Ph: <a>+91 99728 42196</a> / <a>+91
+                                    85264 08447</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FOOTER WORKING HOURS -->
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="footer-box">
+                            <h5>Working Hours</h5>
+                            <p>Open 24/7 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="booking.js">
+    </script>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="booking.js">
+
+    </script>
+</body>
+
+</html>

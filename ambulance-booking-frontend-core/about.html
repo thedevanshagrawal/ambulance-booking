@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Ambulance Booking System</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #f4f4f4;
+            color: #333;
+            padding-top: 50px;
+       
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #007bff;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
+
+        .container {
+            max-width: 1100px;
+            padding: 20px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: #ffffff;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #007bff;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Modal Styling */
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            color: black;
+            border-radius: 8px;
+        }
+
+        .modal-title {
+            color: #007bff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="section-title">🚑 About the Ambulance Booking</h1>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="about-text">
+                    The *Ambulance Booking System* is designed to provide *swift and reliable* emergency ambulance services. 
+                    Users can book an ambulance quickly for medical emergencies, ensuring *fast response times* and *top-quality medical assistance*.
+                </p>
+                <p class="about-text">
+                    Whether it’s an emergency, transportation to a hospital, or urgent assistance, our system ensures that help arrives *on time*, with 
+                    trained professionals and *advanced medical equipment*.
+                </p>
+            </div>
+        </div>
+
+        <h2 class="section-title">🌟 Key Features</h2>
+        <div class="row">
+            <!-- Feature 1 -->
+            <div class="col-md-4 mt-3">
+                <div class="card p-4 text-center">
+                    <i class="bi bi-speedometer2 feature-icon"></i>
+                    <h5 class="card-title">Quick Response</h5>
+                    <p class="card-text">Book an ambulance in seconds with our *fast-tracking system*.</p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="col-md-4 mt-3">
+                <div class="card p-4 text-center">
+                    <i class="bi bi-hospital feature-icon"></i>
+                    <h5 class="card-title">Access to Hospitals</h5>
+                    <p class="card-text">Direct coordination with *hospitals* for emergency patient handling.</p>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="col-md-4 mt-3">
+                <div class="card p-4 text-center">
+                    <i class="bi bi-person-fill feature-icon"></i>
+                    <h5 class="card-title">Qualified Medical Staff</h5>
+                    <p class="card-text">Our ambulance teams include *trained paramedics and doctors*.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">📞 Contact Us</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="about-text">For more details or *emergency assistance*, reach out to us:</p>
+                <ul class="list-unstyled">
+                    <li><strong>Email:</strong> ambulance@gmail.com</li>
+                    <li><strong>Phone:</strong> +91 108</li>
+                    <li><strong>Address:</strong>  Anna Nagar Main Road, Dharapuram - 638657
+                        <a href="https://www.google.com/maps?q=10.7103963,77.5069397" target="_blank"><i class="bi bi-geo-alt">Location</i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <p class="about-text">Book an ambulance *instantly* online.</p>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">🚑 Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Book an Ambulance</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="bookingForm">
+                        <div class="mb-3">
+                            <label for="patientName" class="form-label">Patient's Name</label>
+                            <input type="text" class="form-control" id="patientName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Pickup Location</label>
+                            <input type="text" class="form-control" id="location" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('🚑 Booking Confirmed!');
+            bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
