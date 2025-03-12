@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+            border: 5px solid #f0f0f0;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            margin: 0 0 10px 0;
+        }
+
+        .profile-bio {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .edit-button {
+            background-color: #4a76a8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .edit-button:hover {
+            background-color: #3a5a80;
+        }
+
+        .profile-tabs {
+            display: flex;
+            background: white;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            font-weight: bold;
+            border-bottom: 3px solid #4a76a8;
+            color: #4a76a8;
+        }
+
+        .tab-content {
+            background: white;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-form {
+            display: none;
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .save-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .save-button:hover {
+            background-color: #45a049;
+        }
+
+        .cancel-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .cancel-button:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Loading state */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4a76a8;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <img id="profile-image" src="/api/placeholder/150/150" alt="Profile Image" class="profile-image">
+            <div class="profile-info">
+                <h1 id="profile-name" class="profile-name">John Doe</h1>
+                <p id="profile-bio" class="profile-bio">Loading...</p>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <div id="post-count" class="stat-value">0</div>
+                        <div class="stat-label">Posts</div>
+                    </div>
+                    <div class="stat">
+                        <div id="followers-count" class="stat-value">0</div>
+                        <div class="stat-label">Followers</div>
+                    </div>
+                    <div class="stat">
+                        <div id="following-count" class="stat-value">0</div>
+                        <div class="stat-label">Following</div>
+                    </div>
+                </div>
+                <button id="edit-profile-btn" class="edit-button">Edit Profile</button>
+            </div>
+        </div>
+
+        <div class="profile-tabs">
+            <div class="tab active" data-tab="posts">Posts</div>
+            <div class="tab" data-tab="photos">Photos</div>
+            <div class="tab" data-tab="about">About</div>
+        </div>
+
+        <div class="tab-content" id="posts-content">
+            <p>Your posts will appear here.</p>
+        </div>
+        <div class="tab-content" id="photos-content" style="display: none;">
+            <p>Your photos will appear here.</p>
+        </div>
+        <div class="tab-content" id="about-content" style="display: none;">
+            <p>Additional information about you will appear here.</p>
+        </div>
+
+        <div id="profile-form" class="profile-form" style="display: none;">
+            <h2>Edit Profile</h2>
+            <form id="edit-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio" name="bio" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" class="form-control">
+                </div>
+                <button type="submit" class="save-button">Save Changes</button>
+                <button type="button" id="cancel-edit" class="cancel-button">Cancel</button>
+            </form>
+        </div>
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <script>document.addEventListener('DOMContentLoaded', function () {
+            fetchProfileData();
+
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+                    document.getElementById(`${this.getAttribute('data-tab')}-content`).style.display = 'block';
+                });
+            });
+
+            document.getElementById('edit-profile-btn').addEventListener('click', function () {
+                document.getElementById('name').value = document.getElementById('profile-name').textContent;
+                document.getElementById('bio').value = document.getElementById('profile-bio').textContent;
+                document.getElementById('email').value = localStorage.getItem('userEmail') || '';
+                document.getElementById('location').value = localStorage.getItem('userLocation') || '';
+                document.getElementById('profile-form').style.display = 'block';
+            });
+
+            document.getElementById('cancel-edit').addEventListener('click', function () {
+                document.getElementById('profile-form').style.display = 'none';
+            });
+
+            document.getElementById('edit-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                document.getElementById('loading').style.display = 'block';
+
+                const profileData = {
+                    name: document.getElementById('name').value,
+                    bio: document.getElementById('bio').value,
+                    email: document.getElementById('email').value,
+                    location: document.getElementById('location').value
+                };
+
+                updateProfile(profileData);
+            });
+        });
+
+        async function fetchProfileData() {
+            document.getElementById('loading').style.display = 'block';
+            const response = await ('http://localhost:3000/api/users/current-user')
+                .then(response => response.json())
+                .then(data => updateProfileUI(data))
+                .catch(error => console.error('Error fetching profile:', error))
+                .finally(() => document.getElementById('loading').style.display = 'none');
+
+            console.log("response", response);
+        }
+
+        function updateProfileUI(data) {
+            document.getElementById('profile-name').textContent = data.name;
+            document.getElementById('profile-bio').textContent = data.bio;
+            document.getElementById('post-count').textContent = data.stats.posts.toLocaleString();
+            document.getElementById('followers-count').textContent = data.stats.followers.toLocaleString();
+            document.getElementById('following-count').textContent = data.stats.following.toLocaleString();
+            localStorage.setItem('userEmail', data.email || '');
+            localStorage.setItem('userLocation', data.location || '');
+        }
+
+        function updateProfile(profileData) {
+            fetch('http://localhost:3000/api/users/current-user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(profileData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    updateProfileUI(data);
+                    document.getElementById('profile-form').style.display = 'none';
+                    alert('Profile updated successfully!');
+                })
+                .catch(error => console.error('Error updating profile:', error))
+                .finally(() => document.getElementById('loading').style.display = 'none');
+        }
+
+    </script>
+
+
+</body>
+
+</html>

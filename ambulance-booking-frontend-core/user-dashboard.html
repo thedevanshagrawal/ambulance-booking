@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Ambulance Booking</title>
+    <style>
+        :root {
+            --primary: #FF4757;
+            --secondary: #3742fa;
+            --dark: #2f3542;
+            --light: #f1f2f6;
+            --success: #2ed573;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f6fa;
+            color: var(--dark);
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid #dfe4ea;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 30px;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .profile-btn {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .nav-btn:hover {
+            background-color: #ff2e43;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.4);
+        }
+
+        .nav-btn span {
+            margin-left: 8px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .booking-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .booking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #dfe4ea;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(55, 66, 250, 0.1);
+            outline: none;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #dfe4ea;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232f3542' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+
+        .form-select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(55, 66, 250, 0.1);
+            outline: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #ff2e43;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.4);
+        }
+
+        .status-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .status-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .status-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .status-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 71, 87, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .status-icon.active {
+            background-color: rgba(46, 213, 115, 0.1);
+            color: var(--success);
+        }
+
+        .status-details {
+            flex-grow: 1;
+            padding-left: 15px;
+        }
+
+        .status-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .status-info {
+            color: #747d8c;
+            font-size: 14px;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 300px;
+            background-color: #dfe4ea;
+            position: relative;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, #f5f6fa 30%, #dfe4ea 38%, #f5f6fa 48%);
+            background-size: 200% 100%;
+            animation: shine 1.5s infinite;
+            position: relative;
+        }
+
+        .map-marker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--primary);
+            font-size: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        .ambulance-animation {
+            position: absolute;
+            bottom: 30px;
+            left: -60px;
+            font-size: 30px;
+            color: var(--primary);
+            animation: driveAmbulance 8s infinite linear;
+        }
+
+        .timeline {
+            margin-top: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .timeline-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            margin-right: 15px;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        .timeline-dot:before {
+            content: '';
+            position: absolute;
+            height: 40px;
+            width: 2px;
+            background-color: #dfe4ea;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 15px;
+            z-index: -1;
+        }
+
+        .timeline-item:last-child .timeline-dot:before {
+            display: none;
+        }
+
+        .timeline-content {
+            flex-grow: 1;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-time {
+            color: #747d8c;
+            font-size: 14px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: 100% 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%);
+            }
+
+            50% {
+                transform: translate(-50%, -60%);
+            }
+        }
+
+        @keyframes driveAmbulance {
+            0% {
+                left: -60px;
+            }
+
+            100% {
+                left: calc(100% + 60px);
+            }
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: rgba(46, 213, 115, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .alert-danger {
+            background-color: rgba(255, 71, 87, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .logo {
+                justify-content: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-ambulance"></i>
+                </div>
+                <div class="logo-text">MediRush</div>
+            </div>
+            <button class="nav-btn emergency-btn">
+                <i class="fas fa-phone"></i>
+                <span>Emergency Call</span>
+            </button>
+            <button class="profile-btn profile-btn">
+                <span>Profile</span>
+            </button>
+            <button class="nav-btn logout-btn">
+                <span>Logout</span>
+            </button>
+        </div>
+
+        <div class="main-content">
+            <div class="booking-section">
+                <div class="booking-card">
+                    <h2 class="card-title">
+                        <i class="fas fa-calendar-plus"></i>
+                        Book An Ambulance
+                    </h2>
+
+                    <div id="alertBox" class="alert">
+                        <i class="fas fa-info-circle"></i>
+                        <span id="alertMessage"></span>
+                    </div>
+
+                    <form id="appointmentForm">
+                        <div class="form-group">
+                            <label for="patientName">Patient Name</label>
+                            <input type="text" class="form-control" id="patientName" required
+                                placeholder="Enter patient's full name">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointmentDate">Appointment Date</label>
+                                <input type="date" class="form-control" id="appointmentDate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="appointmentTime">Appointment Time</label>
+                                <input type="time" class="form-control" id="appointmentTime" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emergencyType">Type of Emergency</label>
+                            <select class="form-select" id="emergencyType" required>
+                                <option value="" selected disabled>Select emergency type</option>
+                                <option value="Medical">Medical Emergency</option>
+                                <option value="Accident">Accident</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pickupLocation">Pickup Location</label>
+                            <input type="text" class="form-control" id="pickupLocation" required
+                                placeholder="Enter your current address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="destination">Destination Hospital (Optional)</label>
+                            <input type="text" class="form-control" id="destination"
+                                placeholder="Preferred hospital or clinic">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additionalInfo">Additional Information</label>
+                            <textarea class="form-control" id="additionalInfo" rows="3"
+                                placeholder="Describe the situation or provide any additional details"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-check-circle"></i> Confirm Booking
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="status-section">
+                <div class="status-card">
+                    <h3 class="status-title">Current Status</h3>
+                    <div class="status-content">
+                        <div class="status-icon active">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="status-details">
+                            <div class="status-name">Ambulance Confirmed</div>
+                            <div class="status-info">Arriving in approximately 8 minutes</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <div class="map-marker">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="ambulance-animation">
+                            <i class="fas fa-ambulance"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <h3 class="status-title">Booking Timeline</h3>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Booking Received</div>
+                            <div class="timeline-time">9:15 AM</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Ambulance Assigned</div>
+                            <div class="timeline-time">9:17 AM</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">En Route</div>
+                            <div class="timeline-time">9:18 AM</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Estimated Arrival</div>
+                            <div class="timeline-time">9:25 AM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const handleLogout = async () => {
+            await fetch("http://localhost:3000/api/users/logout", {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${localStorage.removeItem('sessionToken')}`
+                }
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.logout-btn').addEventListener('click', async () => {
+                await handleLogout();
+                localStorage.removeItem('sessionToken');
+                window.location.href = 'index.html';
+            });
+        });
+
+        // Backend integration function
+        const bookingHandleSubmit = async (formData) => {
+            try {
+                const response = await fetch("http://localhost:3000/api/ambulance/register-ambulance-booking", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Server response was not ok');
+                }
+
+                return await response.json();
+            } catch (error) {
+                console.error("Error submitting booking:", error);
+                throw error;
+            }
+        };
+
+        // Show alert message
+        const showAlert = (message, type) => {
+            const alertBox = document.getElementById('alertBox');
+            const alertMessage = document.getElementById('alertMessage');
+
+            alertBox.className = 'alert';
+            alertBox.classList.add(type === 'success' ? 'alert-success' : 'alert-danger');
+            alertMessage.textContent = message;
+            alertBox.style.display = 'block';
+
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 5000);
+        };
+
+        // Form submission handler
+        document.getElementById('appointmentForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Get form values
+            const patientName = document.getElementById('patientName').value;
+            const appointmentDate = document.getElementById('appointmentDate').value;
+            const appointmentTime = document.getElementById('appointmentTime').value;
+            const emergencyType = document.getElementById('emergencyType').value;
+            const pickupLocation = document.getElementById('pickupLocation').value;
+            const destination = document.getElementById('destination').value;
+            const additionalInfo = document.getElementById('additionalInfo').value;
+
+            // Create data object with all form fields
+            const formData = {
+                patientName,
+                appointmentDate,
+                appointmentTime,
+                emergencyType,
+                pickupLocation,
+                destination,
+                additionalInfo
+            };
+
+            // Simple animation to show form submission
+            const btn = document.querySelector('.btn-primary');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            try {
+                // Call the backend integration function
+                const response = await bookingHandleSubmit(formData);
+
+                // Handle successful submission
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Booking Confirmed!';
+                btn.style.backgroundColor = '#2ed573';
+
+                // Show success message
+                showAlert('Your ambulance has been booked successfully! A medical team is on the way.', 'success');
+
+                // Reset form after successful submission
+                setTimeout(() => {
+                    document.getElementById('appointmentForm').reset();
+                    document.getElementById('appointmentDate').value = today;
+
+                    // Reset button
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Booking';
+                    btn.style.backgroundColor = '';
+                    btn.disabled = false;
+                }, 3000);
+
+            } catch (error) {
+                // Handle error
+                btn.innerHTML = '<i class="fas fa-times-circle"></i> Booking Failed';
+                btn.style.backgroundColor = '#2ed573';
+
+                // Show error message
+                showAlert('There was an error booking your ambulance. Please try again.', 'danger');
+
+                // Reset button
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Booking';
+                    btn.style.backgroundColor = '';
+                    btn.disabled = false;
+                }, 3000);
+            }
+        });
+
+        // Set today's date as the minimum date
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('appointmentDate').setAttribute('min', today);
+
+        // Auto-fill today's date
+        document.getElementById('appointmentDate').value = today;
+
+        // Emergency call button animation
+        const emergencyBtn = document.querySelector('.emergency-btn');
+        emergencyBtn.addEventListener('click', function () {
+            alert('Emergency call initiated! A dispatcher will contact you immediately.');
+        });
+    </script>
+</body>
+
+</html>

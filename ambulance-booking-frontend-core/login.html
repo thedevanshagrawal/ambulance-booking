@@ -9,7 +9,7 @@
 </head>
 
 <script>
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const fullName = document.getElementById("name").value;
         const email = document.getElementById("email").value;
@@ -26,18 +26,20 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.data.accessToken) {
-                localStorage.setItem('sessionToken', data.data.accessToken);
-                window.location.href = 'index.html';
-            } else {
-                console.error('Login failed:', data.data.message);
-            }
-        })
-        .catch(error => console.error('Error:', error));
+            .then(response => response.json())
+            .then(data => {
+                if (data.data.accessToken) {
+                    localStorage.setItem('sessionToken', data.data.accessToken);
+                    window.location.href = 'user-dashboard.html';
+                    
+                } else {
+                    console.error('Login failed:', data.data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        };
 
-    };
+        
 </script>
 
 <body>
