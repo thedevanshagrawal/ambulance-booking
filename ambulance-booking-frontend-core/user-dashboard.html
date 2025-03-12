@@ -615,9 +615,10 @@
         // Backend integration function
         const bookingHandleSubmit = async (formData) => {
             try {
+                const token = localStorage.getItem('sessionToken')
                 const response = await fetch("http://localhost:3000/api/ambulance/register-ambulance-booking", {
                     method: "POST",
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { "Authorization": `Bearer ${token}`, 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
 

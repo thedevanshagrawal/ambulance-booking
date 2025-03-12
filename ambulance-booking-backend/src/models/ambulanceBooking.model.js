@@ -28,6 +28,10 @@ const ambulanceBookingSchema = Schema(
         preferredAmbulanceType: {
             type: String
         },
+        isAprroved: {
+            type: Boolean,
+            default: false
+        },
         appointmentDate: {
             type: String,
             trim: true,

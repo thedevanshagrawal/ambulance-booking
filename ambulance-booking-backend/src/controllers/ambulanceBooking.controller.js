@@ -8,27 +8,26 @@ const registerAmbulanceBooking = asyncHandler(async (req, res) => {
     try {
         const { patientName, patientMobile, patientAge, patientGender, pickupLocation, destination, emergencyType, preferredAmbulanceType, appointmentDate, appointmentTime } = req.body
 
-        console.log("req.body: ", req.body)
 
         // if (!patientName || !patientMobile || !patientAge || !patientGender || !pickupLocation || !emergencyType || !preferredAmbulanceType || !appointmentDate || !appointmentTime) {
         //     throw new ApiError(400, "All fields are required")
         // }
 
-        // const user = req.user
-        // const userEmail = user.email
+        const user = req.user
+        const userEmail = user.email
 
         const newAmbulanceBooking = await AmbulanceBooking.create({
             patientName,
-            patientMobile: "12345",
-            patientAge: "20",
-            patientGender: "male",
-            pickupLocation: "raipur",
-            destination: "bhilai",
-            emergencyType: "accident",
-            preferredAmbulanceType: "ambulance",
-            appointmentDate: "2023-01-01",
-            appointmentTime: "10:00",
-            userEmail: "n2M1v@example.com"
+            patientMobile: patientMobile || "12345",
+            patientAge: patientAge || "20",
+            patientGender: patientGender || "male",
+            pickupLocation: pickupLocation || "raipur",
+            destination: destination || "bhilai",
+            emergencyType: emergencyType || "accident",
+            preferredAmbulanceType: preferredAmbulanceType || "ambulance",
+            appointmentDate: appointmentDate || "2023-01-01",
+            appointmentTime: appointmentTime || "10:00",
+            userEmail: userEmail || "n2M1v@example.com"
         })
 
         if (!newAmbulanceBooking) {
