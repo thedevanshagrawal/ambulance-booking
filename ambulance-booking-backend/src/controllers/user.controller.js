@@ -55,48 +55,55 @@ const registerUser = asyncHandler(async (req, res) => {
 })
 
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body
+    const { email, password } = req.body;
 
     if (!email || !password) {
-        throw new ApiError(400, "All field are required")
+        throw new ApiError(400, "All fields are required");
     }
 
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ email });
 
     if (!user) {
-        throw new ApiError(400, "User does not exist")
+        throw new ApiError(400, "User does not exist");
     }
 
-    const isPasswordValid = await user.isPasswordCorrect(password)
+    const isPasswordValid = await user.isPasswordCorrect(password);
 
     if (!isPasswordValid) {
-        throw new ApiError(400, "Invalid user creadential")
+        throw new ApiError(400, "Invalid user credentials");
     }
 
-    const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id)
+    const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id);
 
     const loggedInUser = await User.findById(user._id).select(
         "-password -refreshToken"
-    )
+    );
 
-    const options = {
-        httpOnly: true,
-        secure: true
-    }
+    const cookieOptions = {
+        httpOnly: false,   // ✅ Set to false so frontend can read cookies
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Lax",   // ✅ Set to "Lax" instead of "None" for better compatibility
+        path: "/",         // ✅ Ensure cookies are available across the site
+    };
+
+    // Set Access Token (expires in 15 minutes)
+    res.cookie("accessToken", accessToken, {
+        ...cookieOptions,
+        maxAge: 15 * 60 * 1000,
+    });
+
+    // Set Refresh Token (expires in 7 days)
+    res.cookie("refreshToken", refreshToken, {
+        ...cookieOptions,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
 
     return res
         .status(201)
-        .cookie("accessToken", accessToken, options)
-        .cookie("refreshToken", refreshToken, options)
-        .json(
-            new ApiResponse(200,
-                {
-                    user, loggedInUser, accessToken, refreshToken
-                },
-                "User logged In Successfully"
-            )
-        )
-})
+        .json(new ApiResponse(200, {
+            user, loggedInUser, accessToken, refreshToken
+        }, "User logged in successfully"));
+});
 
 const logoutUser = asyncHandler(async (req, res) => {
     await User.findByIdAndUpdate(

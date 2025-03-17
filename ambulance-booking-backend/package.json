@@ -1,9 +1,9 @@
 {
   "name": "ambulance-booking-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Ambulance Booking Backend - © 2025 Devansh Agrawal. All Rights Reserved.",
   "license": "ISC",
-  "author": "",
+  "author": "Devansh Agrawal",
   "type": "module",
   "main": "index.js",
   "scripts": {
