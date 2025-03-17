@@ -177,10 +177,28 @@ const getCurrentUser = asyncHandler(async (req, res) => {
         .json(new ApiResponse(200, user, "user logged out"))
 })
 
+const getAllUsers = asyncHandler(async (req, res) => {
+    try {
+        const users = await User.find();
+
+        if (!users) {
+            throw new ApiError(400, "no user  found")
+        }
+
+        return res
+            .status(201)
+            .json(new ApiResponse(200, users, "Users fetched successfully"))
+    } catch (error) {
+        console.log(error)
+        throw new ApiError(500, "Internal server error")
+    }
+})
+
 export {
     registerUser,
     loginUser,
     logoutUser,
     refreshAccessToken,
-    getCurrentUser
+    getCurrentUser,
+    getAllUsers
 }

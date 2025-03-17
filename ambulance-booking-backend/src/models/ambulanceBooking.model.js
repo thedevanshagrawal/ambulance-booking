@@ -67,7 +67,10 @@ const ambulanceBookingSchema = Schema(
         },
         userEmail: {
             type: String
-        }
+        },
+        userFullName: {
+            type: String
+        },
     },
     {
         timestamps: true
