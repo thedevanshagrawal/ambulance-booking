@@ -181,7 +181,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     const user = req.user;
     return res
         .status(201)
-        .json(new ApiResponse(200, user, "user logged out"))
+        .json(new ApiResponse(200, user, "user fetched successfully"))
 })
 
 const getAllUsers = asyncHandler(async (req, res) => {

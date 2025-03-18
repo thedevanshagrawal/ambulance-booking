@@ -8,7 +8,6 @@ const registerAmbulanceBooking = asyncHandler(async (req, res) => {
     try {
         const { patientName, patientMobile, patientAge, patientGender, pickupLocation, destination, emergencyType, preferredAmbulanceType, appointmentDate, appointmentTime } = req.body
 
-
         // if (!patientName || !patientMobile || !patientAge || !patientGender || !pickupLocation || !emergencyType || !preferredAmbulanceType || !appointmentDate || !appointmentTime) {
         //     throw new ApiError(400, "All fields are required")
         // }
