@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../Authentication/AuthContext";
 import Cookies from "js-cookie";
@@ -303,8 +303,8 @@ const Login = () => {
                 >
                   Don't have an account?{" "}
                 </span>
-                <a
-                  href="#"
+                <Link
+                  to="/register"
                   className={`${
                     darkMode
                       ? "text-red-400 hover:text-red-300"
@@ -312,7 +312,7 @@ const Login = () => {
                   } font-semibold transition-colors`}
                 >
                   Create account
-                </a>
+                </Link>
               </div>
             </div>
           </form>

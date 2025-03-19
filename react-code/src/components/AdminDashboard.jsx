@@ -4,13 +4,26 @@ import RegisteredUsersPage from "./RegisteredUsersPage";
 import { useAuth } from "../Authentication/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon, Menu, X, Users, Calendar } from "lucide-react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
-  const { isAuthenticated, token } = useAuth();
+  const { isAuthenticated, token, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("bookings");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
+
+  const handleLogout = async() => {
+    try {
+      await axios.post("http://localhost:3000/api/users/logout", {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      logout();
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     // Check system preferences for dark mode
@@ -99,7 +112,8 @@ const AdminDashboard = () => {
           </button>
           <h1 className="text-xl font-bold">Admin Dashboard</h1>
         </div>
-        <button
+       <div className="flex gap-6">
+       <button
           onClick={toggleDarkMode}
           className={`rounded-full p-2 ${
             darkMode
@@ -109,6 +123,13 @@ const AdminDashboard = () => {
         >
           {darkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>
+        <button
+              onClick={handleLogout}
+              className="bg-gray-850 text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-gray-900 transition-colors text-center"
+            >
+              Logout
+            </button>
+       </div>
       </div>
 
       <div className="mt-16 flex flex-grow">

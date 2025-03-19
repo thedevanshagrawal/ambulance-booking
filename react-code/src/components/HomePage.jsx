@@ -115,6 +115,12 @@ const HomePage = () => {
             >
               Login
             </Link>
+            <Link
+              to="/register"
+              className="hidden md:block bg-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-100 transition-colors dark:hover:bg-red-800 dark:hover:text-white"
+            >
+              Register
+            </Link>
           </div>
         </div>
 
@@ -142,6 +148,12 @@ const HomePage = () => {
               className="bg-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-100 transition-colors text-center"
             >
               Login
+            </Link>
+            <Link
+              to="/register"
+              className="bg-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-100 transition-colors text-center"
+            >
+              Register
             </Link>
           </nav>
         </div>

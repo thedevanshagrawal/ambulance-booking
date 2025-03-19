@@ -10,6 +10,7 @@ import ProtectedRoute from "./Authentication/ProtectedRoute";
 import Bookings from "./components/Bookings";
 import RegisteredUsersPage from "./components/RegisteredUsersPage";
 import About from "./components/About";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About />} />
             <Route
               path="/profile"
