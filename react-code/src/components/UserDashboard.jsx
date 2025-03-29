@@ -19,7 +19,7 @@ import {
   X,
 } from "lucide-react";
 
-const AmbulanceBookingForm = ({ showAlert }) => {
+const AmbulanceBookingForm = () => {
   const { token, logout } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,11 +74,11 @@ const AmbulanceBookingForm = ({ showAlert }) => {
         }
       );
 
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         throw new Error("Server response was not ok");
       }
 
-      showAlert(
+      alert(
         "Your ambulance has been booked successfully! A medical team is on the way.",
         "success"
       );
@@ -93,7 +93,8 @@ const AmbulanceBookingForm = ({ showAlert }) => {
       });
       setCurrentStep(1);
     } catch (error) {
-      showAlert(
+      console.log("error: ", error);
+      alert(
         "There was an error booking your ambulance. Please try again.",
         "danger"
       );
@@ -103,7 +104,7 @@ const AmbulanceBookingForm = ({ showAlert }) => {
   };
 
   const handleEmergencyCall = () => {
-    showAlert("Calling emergency services at 911...", "info");
+    alert("Calling emergency services at 911...", "info");
   };
 
   const handleLogout = async () => {
@@ -117,7 +118,7 @@ const AmbulanceBookingForm = ({ showAlert }) => {
       );
       logout();
     } catch (error) {
-      showAlert("Logout failed. Please try again.", "danger");
+      alert("Logout failed. Please try again.", "danger");
     }
   };
 
@@ -126,7 +127,7 @@ const AmbulanceBookingForm = ({ showAlert }) => {
   };
 
   const goToProfile = () => {
-    showAlert("Navigating to profile...", "info");
+    alert("Navigating to profile...", "info");
     setIsMenuOpen(false);
   };
 
