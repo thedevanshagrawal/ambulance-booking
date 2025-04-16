@@ -16,7 +16,7 @@ const UserProfile = () => {
     const token = localStorage.getItem("sessionToken");
     try {
       const response = await fetch(
-        "http://localhost:3000/api/users/current-user",
+        "import.meta.env.BACKEND_API/api/users/current-user",
         {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },

@@ -16,7 +16,7 @@ const AdminDashboard = () => {
 
   const handleLogout = async() => {
     try {
-      await axios.post("http://localhost:3000/api/users/logout", {}, {
+      await axios.post("import.meta.env.BACKEND_API/api/users/logout", {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       logout();

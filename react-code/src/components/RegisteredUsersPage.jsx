@@ -29,7 +29,7 @@ const RegisteredUsersPage = ({ darkMode }) => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `http://localhost:3000/api/users/get-all-users`,
+          `import.meta.env.BACKEND_API/api/users/get-all-users`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -52,7 +52,7 @@ const RegisteredUsersPage = ({ darkMode }) => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:3000/api/users/get-all-users`,
+        `import.meta.env.BACKEND_API/api/users/get-all-users`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

@@ -24,7 +24,7 @@ const Register = () => {
     setIsSubmitting(true);
     
 
-    const response = await axios.post("http://localhost:3000/api/users/register", formData)
+    const response = await axios.post("import.meta.env.BACKEND_API/api/users/register", formData)
 
     // Simulate API call
     setTimeout(() => {

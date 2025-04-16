@@ -28,7 +28,7 @@ const Bookings = ({ darkMode }) => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `http://localhost:3000/api/ambulance/get-all-ambulane-booking-details`,
+          `import.meta.env.BACKEND_API/api/ambulance/get-all-ambulane-booking-details`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
