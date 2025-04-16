@@ -32,8 +32,6 @@ const AdminDashboard = () => {
     ).matches;
     setDarkMode(prefersDark);
 
-    // Check authentication status
-    console.log("Auth State:", isAuthenticated, "Token from useAuth:", token);
     if (isAuthenticated !== null) {
       setLoading(false);
     }
@@ -211,7 +209,7 @@ const AdminDashboard = () => {
           transition={{ duration: 0.3 }}
           className={`flex-grow overflow-auto p-6 transition-all ${
             darkMode ? "bg-gray-900" : "bg-gray-50"
-          } }`}
+          }`}
         >
           <div
             className={`rounded-lg ${

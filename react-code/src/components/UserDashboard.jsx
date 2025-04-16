@@ -73,15 +73,11 @@ const AmbulanceBookingForm = ({ showAlert }) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         throw new Error("Server response was not ok");
       }
 
-      showAlert(
-        "Your ambulance has been booked successfully! A medical team is on the way.",
-        "success"
-      );
+     
       setFormData({
         patientName: "",
         appointmentDate: new Date().toISOString().split("T")[0],
@@ -93,10 +89,7 @@ const AmbulanceBookingForm = ({ showAlert }) => {
       });
       setCurrentStep(1);
     } catch (error) {
-      showAlert(
-        "There was an error booking your ambulance. Please try again.",
-        "danger"
-      );
+      console.log(error)
     } finally {
       setIsSubmitting(false);
     }

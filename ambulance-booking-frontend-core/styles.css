@@ -1,0 +1,74 @@
+/* Main styles for Ambulance Booking System */
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Text Styles */
+.text-justify {
+    text-align: justify;
+}
+
+.section-heading {
+    color: #000000;
+    font-weight: bold;
+}
+
+.normal-text {
+    font-weight: 400;
+    color: #000000;
+}
+
+/* List Styles */
+.service-list {
+    text-align: justify;
+}
+
+.service-list li {
+    font-weight: 400;
+}
+
+.service-icon {
+    color: red;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/* Appointment Details */
+.appointment-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    z-index: 1050;
+    max-width: 90%;
+    width: 400px;
+    display: none;
+}
+
+/* Footer Styles */
+.footer-bg {
+    background-image: url('https://ideabricks.in/sugam-hospitals/wp-content/uploads/2023/12/Group-214.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    padding: 40px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .service-list {
+        padding-left: 15px;
+    }
+    
+    .footer-section {
+        text-align: center;
+    }
+}

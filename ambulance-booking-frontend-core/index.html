@@ -10,6 +10,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="booking.css">
+    <link rel="stylesheet" href="styles.css">
 
     <!---font style-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,8 +21,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@300&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-
+    
+    <style>
+        /* Responsive fixes */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .navbar .btn {
+                margin-top: 10px;
+                margin-left: 0 !important;
+                width: 100%;
+            }
+            
+            .modal-dialog {
+                margin: 0.5rem;
+            }
+            
+            .footer {
+                text-align: center;
+            }
+            
+            .footer-socials-links ul {
+                justify-content: center;
+            }
+        }
+        
+        /* Fix for appointment details */
+        .appointment-details {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            z-index: 1050;
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        /* Fix for modal on small screens */
+        @media (max-width: 576px) {
+            .modal-dialog {
+                max-width: 95%;
+                margin: 0.5rem auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -34,11 +83,11 @@
                 <span class="ms-3">📞108</span>
             </div>
             <div class="col-6 text-end">
-                <a href="https://www.facebook.com/sugam.ambulance/?_rdr" class="text-white me-2" target="_blank">
+                <a href="https://www.facebook.com/sugam.ambulance/?_rdr" class="text-white me-2" target="_blank" rel="noopener noreferrer">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" alt="Facebook"
                         width="30">
                 </a>
-                <a href="https://www.instagram.com/faisul_sugam/" class="text-white" target="_blank">
+                <a href="https://www.instagram.com/faisul_sugam/" class="text-white" target="_blank" rel="noopener noreferrer">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png"
                         alt="Instagram" width="30">
                 </a>
@@ -115,7 +164,7 @@
                 </div>
 
                 <!-- Appointment details display -->
-                <div id="appointmentDetails" class="appointment-details" style="display: none;">
+                <div id="appointmentDetails" class="appointment-details">
 
                     <h4>Appointment Details:</h4>
 
@@ -151,16 +200,15 @@
                 <img src="em.png" alt="Emergency Care" class="img-fluid rounded shadow-lg">
             </div>
 
-            <h4 style="text-align: justify;"><span style="color: #000000;"><strong>Emergency care</strong></span>
-            </h4>
+            <h4 class="text-justify section-heading">Emergency care</h4>
 
-            <span style="font-weight: 400; color: #000000;">
+            <span class="normal-text">
                 <p>We bring the considerable skills of our specialists and the advantage of advanced technology
                     nearer
                     the people of North Chennai for speedier treatments and better outcomes.
             </span></p>
 
-            <span style="font-weight: 400; color: #000000;">Preparedness, prioritization and quick action are the
+            <span class="normal-text">Preparedness, prioritization and quick action are the
                 mainstays of emergency care. Our 24×7 emergency services are handled by specialists with good
                 experience
                 in working under pressure and time constraints. An interdisciplinary approach and nurses trained in
@@ -168,7 +216,7 @@
                 where
                 medical history may not be available and immediate treatment is necessary.</span>
 
-            <span style="font-weight: 400; color: #000000;">Our emergency department is equipped with the latest
+            <span class="normal-text">Our emergency department is equipped with the latest
                 life
                 saving equipments and blood storage facility. Our Disaster Management Team is highly trained and is
                 capable of handling emergencies involving multiple casualties. The team successfully resuscitated
@@ -176,55 +224,55 @@
                 100 patients in a short span of time during the tsunami.</span>
 
 
-            <span style="font-weight: 400; color: #000000;">
+            <span class="normal-text">
                 Ambulances equipped with Defibrillator, Ventilator, and Oxygen and manned by well-experienced staff
                 begin pre-hospital care and first-aid to better the chances of recovery.
             </span>
 
             <div class="col-mt-12">
-                <span style="color: #000000;"><strong>We routinely handle</strong></span>
+                <span class="section-heading">We routinely handle</span>
 
 
                 <div class="row">
                     <div class="col-md-6">
-                        <ul class="list-unstyled" style="text-align: justify;">
-                            <li style="font-weight: 400;">
-                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                                <span style="font-weight: 400; color: #000000;">Road Traffic Accidents,</span>
+                        <ul class="list-unstyled service-list">
+                            <li>
+                                <i class="bi bi-plus service-icon"></i>
+                                <span class="normal-text">Road Traffic Accidents,</span>
                             </li>
-                            <li style="font-weight: 400;">
-                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                                <span style="font-weight: 400; color: #000000;">Crush and Degloving injuries</span>
+                            <li>
+                                <i class="bi bi-plus service-icon"></i>
+                                <span class="normal-text">Crush and Degloving injuries</span>
                             </li>
-                            <li style="font-weight: 400;">
-                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                                <span style="font-weight: 400; color: #000000;">Cardiopulmonary emergencies</span>
+                            <li>
+                                <i class="bi bi-plus service-icon"></i>
+                                <span class="normal-text">Cardiopulmonary emergencies</span>
                             </li>
-                            <li style="font-weight: 400;">
-                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                                <span style="font-weight: 400; color: #000000;">Surgical emergencies</span>
+                            <li>
+                                <i class="bi bi-plus service-icon"></i>
+                                <span class="normal-text">Surgical emergencies</span>
                             </li>
                         </ul>
                     </div>
 
 
                     <div class="col-md-6">
-                        <ul class="list-unstyled" style="text-align: justify;">
-                            <li style="font-weight: 400;">
-                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                                <span style="font-weight: 400; color: #000000;">Toxicology</span>
+                        <ul class="list-unstyled service-list">
+                            <li>
+                                <i class="bi bi-plus service-icon"></i>
+                                <span class="normal-text">Toxicology</span>
                             </li>
-                            <li style="font-weight: 400;">
-                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                                <span style="font-weight: 400; color: #000000;">Obstetric emergencies</span>
+                            <li>
+                                <i class="bi bi-plus service-icon"></i>
+                                <span class="normal-text">Obstetric emergencies</span>
                             </li>
-                            <li style="font-weight: 400;">
-                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                                <span style="font-weight: 400; color: #000000;">Burns</span>
+                            <li>
+                                <i class="bi bi-plus service-icon"></i>
+                                <span class="normal-text">Burns</span>
                             </li>
-                            <li style="font-weight: 400;">
-                                <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                                <span style="font-weight: 400; color: #000000;">Orthopaedic emergencies</span>
+                            <li>
+                                <i class="bi bi-plus service-icon"></i>
+                                <span class="normal-text">Orthopaedic emergencies</span>
                             </li>
                         </ul>
                     </div>
@@ -232,32 +280,32 @@
                 </div>
 
 
-                <span style="color: #000000;"><strong>Services available with</strong></span>
+                <span class="section-heading">Services available with</span>
 
-                <ul class="list-unstyled" style="text-align: justify;">
-                    <li style="font-weight: 400;">
-                        <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                        <span style="font-weight: 400; color: #000000;">Full time Emergency Physician</span>
+                <ul class="list-unstyled service-list">
+                    <li>
+                        <i class="bi bi-plus service-icon"></i>
+                        <span class="normal-text">Full time Emergency Physician</span>
                     </li>
-                    <li style="font-weight: 400;">
-                        <i class="bi bi-plus" style="color: red; font-weight: bold; font-size: 24px;"></i>
-                        <span style="font-weight: 400; color: #000000;">Trained Staff nurses</span>
+                    <li>
+                        <i class="bi bi-plus service-icon"></i>
+                        <span class="normal-text">Trained Staff nurses</span>
                     </li>
-                    <li style="font-weight: 400;">
-                        <i class="bi bi-plus" style="color:red; font-weight: bold; font-size: 24px;"></i>
-                        <span style="font-weight: 400; color: #000000;">Rapid Response Team (RRT)</span>
+                    <li>
+                        <i class="bi bi-plus service-icon"></i>
+                        <span class="normal-text">Rapid Response Team (RRT)</span>
                     </li>
 
-                    <li style="font-weight: 400;">
-                        <i class="bi bi-plus" style="color: red;; font-weight: bold; font-size: 24px;"></i>
-                        <span style="font-weight: 400; color: #000000;">Full time – CT Scan, Digital X-Ray,
+                    <li>
+                        <i class="bi bi-plus service-icon"></i>
+                        <span class="normal-text">Full time – CT Scan, Digital X-Ray,
                             Digital
                             Lab facilities
                         </span>
                     </li>
-                    <li style="font-weight: 400;">
-                        <i class="bi bi-plus" style="color: red;; font-weight: bold; font-size: 24px;"></i>
-                        <span style="font-weight: 400; color: #000000;">Full time – Surgical & Medical
+                    <li>
+                        <i class="bi bi-plus service-icon"></i>
+                        <span class="normal-text">Full time – Surgical & Medical
                             interventions
                         </span>
                     </li>
@@ -268,8 +316,7 @@
         </div>
     </section>
     <footer id="footer-1" class="footer">
-        <div class="footer"
-            style="background-image: url('https://ideabricks.in/sugam-hospitals/wp-content/uploads/2023/12/Group-214.png'); background-size: cover; background-repeat: no-repeat; background-position: center; color: white; padding: 40px 0;">
+        <div class="footer footer-bg">
             <div class="container">
                 <div class="row">
                     <!-- FOOTER INFO -->
@@ -285,13 +332,13 @@
                             <div class="footer-socials-links mt-3">
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
-                                        <a href="https://www.facebook.com/sugam.ambulance/?_rdr" target="_blank">
+                                        <a href="https://www.facebook.com/sugam.ambulance/?_rdr" target="_blank" rel="noopener noreferrer">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"
                                                 alt="Facebook" width="30">
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
-                                        <a href="https://www.instagram.com/faisul_sugam/" target="_blank">
+                                        <a href="https://www.instagram.com/faisul_sugam/" target="_blank" rel="noopener noreferrer">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png"
                                                 alt="Instagram" width="30">
                                         </a>
@@ -311,7 +358,7 @@
                                 Dharapuram - 638657 (Near Vel Hospital)
                             </p>
                             <a href="https://www.google.com/maps/place/10%C2%B042'37.4%22N+77%C2%B030'25.0%22E/@10.7103963,77.5069397,17z"
-                                target="_blank"><i class="bi bi-geo-alt">Location</i></a>
+                                target="_blank" rel="noopener noreferrer"><i class="bi bi-geo-alt">Location</i></a>
                             <p>
                                 Ph: <a>+91 99728 42196</a> / <a>+91
                                     85264 08447</a>
