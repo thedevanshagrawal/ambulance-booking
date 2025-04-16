@@ -73,22 +73,13 @@ const AmbulanceBookingForm = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-<<<<<<< HEAD
-=======
-
->>>>>>> 3d0850d553860d78fbc0394718b354144fb6936b
       if (response.status !== 201) {
         throw new Error("Server response was not ok");
       }
-
-<<<<<<< HEAD
-     
-=======
       alert(
         "Your ambulance has been booked successfully! A medical team is on the way.",
         "success"
       );
->>>>>>> 3d0850d553860d78fbc0394718b354144fb6936b
       setFormData({
         patientName: "",
         appointmentDate: new Date().toISOString().split("T")[0],
@@ -100,15 +91,11 @@ const AmbulanceBookingForm = () => {
       });
       setCurrentStep(1);
     } catch (error) {
-<<<<<<< HEAD
-      console.log(error)
-=======
       console.log("error: ", error);
       alert(
         "There was an error booking your ambulance. Please try again.",
         "danger"
       );
->>>>>>> 3d0850d553860d78fbc0394718b354144fb6936b
     } finally {
       setIsSubmitting(false);
     }
