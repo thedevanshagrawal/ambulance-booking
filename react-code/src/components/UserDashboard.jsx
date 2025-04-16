@@ -19,7 +19,7 @@ import {
   X,
 } from "lucide-react";
 
-const AmbulanceBookingForm = ({ showAlert }) => {
+const AmbulanceBookingForm = () => {
   const { token, logout } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,17 +67,28 @@ const AmbulanceBookingForm = ({ showAlert }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/ambulance/register-ambulance-booking",
+        "import.meta.env.BACKEND_API/api/ambulance/register-ambulance-booking",
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3d0850d553860d78fbc0394718b354144fb6936b
       if (response.status !== 201) {
         throw new Error("Server response was not ok");
       }
 
+<<<<<<< HEAD
      
+=======
+      alert(
+        "Your ambulance has been booked successfully! A medical team is on the way.",
+        "success"
+      );
+>>>>>>> 3d0850d553860d78fbc0394718b354144fb6936b
       setFormData({
         patientName: "",
         appointmentDate: new Date().toISOString().split("T")[0],
@@ -89,20 +100,28 @@ const AmbulanceBookingForm = ({ showAlert }) => {
       });
       setCurrentStep(1);
     } catch (error) {
+<<<<<<< HEAD
       console.log(error)
+=======
+      console.log("error: ", error);
+      alert(
+        "There was an error booking your ambulance. Please try again.",
+        "danger"
+      );
+>>>>>>> 3d0850d553860d78fbc0394718b354144fb6936b
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleEmergencyCall = () => {
-    showAlert("Calling emergency services at 911...", "info");
+    alert("Calling emergency services at 911...", "info");
   };
 
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/api/users/logout",
+        "import.meta.env.BACKEND_API/api/users/logout",
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -110,7 +129,7 @@ const AmbulanceBookingForm = ({ showAlert }) => {
       );
       logout();
     } catch (error) {
-      showAlert("Logout failed. Please try again.", "danger");
+      alert("Logout failed. Please try again.", "danger");
     }
   };
 
@@ -119,7 +138,7 @@ const AmbulanceBookingForm = ({ showAlert }) => {
   };
 
   const goToProfile = () => {
-    showAlert("Navigating to profile...", "info");
+    alert("Navigating to profile...", "info");
     setIsMenuOpen(false);
   };
 
